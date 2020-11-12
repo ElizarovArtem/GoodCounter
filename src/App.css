@@ -1,0 +1,84 @@
+.App {
+  text-align: center;
+  display: flex;
+}
+
+.highNumber{
+  border: 1px solid black;
+  height: 250px;
+  border-radius: 10px;
+  font-size: 94px;
+  background-color: darkgray;
+  color: red;
+}
+
+.counter{
+  background-color: cornflowerblue;
+  width: 500px;
+  margin: 100px auto;
+  border-radius: 10px;
+  padding: 25px;
+}
+
+.display{
+  border: 1px solid black;
+  height: 250px;
+  border-radius: 10px;
+  font-size: 84px;
+  background-color: darkgray;
+}
+
+.selectNumber {
+  border: 1px solid black;
+  height: 250px;
+  border-radius: 10px;
+  background-color: darkgray;
+  font-size: 2em;
+  line-height: 3.4;
+}
+
+.buttons{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.button{
+  margin-top: 15px;
+  border: 1px solid black;
+  height: 80px;
+  width: 200px;
+  border-radius: 10px;
+  font-size: 1.5em;
+  background-color: gold;
+}
+
+.disable{
+  margin-top: 15px;
+  border: 1px solid black;
+  height: 80px;
+  width: 200px;
+  border-radius: 10px;
+  font-size: 1.5em;
+  background-color: darkgray;
+}
+
+.errorInput {
+  border-color: red;
+  color: white;
+  background-color: red;
+  font-size: 24px;
+  text-align: center;
+}
+.originInput {
+  font-size: 24px;
+  text-align: center;
+}
+
+.errorSpan {
+  color: black;
+}
+
+.errorMessage {
+  color: red;
+}
