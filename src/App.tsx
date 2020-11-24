@@ -1,17 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import {Button} from "./Button";
-import {Display} from "./Display";
-import {SettingsDisplay} from "./SettingsDisplay";
+import {Button} from "./Components/Button";
+import {Display} from "./Components/Display";
+import {SettingsDisplay} from "./Components/SettingsDisplay";
 
 
+/*
 function App() {
-
-    /*function restoreState<T>(key: string, defaultState: T) {
-        const stateAsString = localStorage.getItem(key);
-        if (stateAsString !== null) defaultState = JSON.parse(stateAsString) as T;
-        return defaultState;
-    }*/
 
     let min = localStorage.getItem("MinValue")
     let max = localStorage.getItem("MaxValue")
@@ -33,14 +28,6 @@ function App() {
     }
 
 
-
-    /*useEffect(() => {
-        const max = restoreState('MaxValue', invisibleMaxValue)
-        const min = restoreState('MinValue', invisibleMinValue)
-        setInvisibleMaxValue(Number(max))
-        setInvisibleMinValue(Number(min))
-    }, [])*/
-
     return (
         <div className="App">
             <div className={"counter"}>
@@ -60,3 +47,4 @@ function App() {
 }
 
 export default App;
+*/
