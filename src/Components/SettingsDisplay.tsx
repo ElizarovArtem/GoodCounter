@@ -17,9 +17,13 @@ export function SettingsDisplay() {
 
     const onChangeSettingsValue = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.currentTarget.dataset.value === "max") {
-            dispatch(setMaxSettingsValueAC(Number(e.currentTarget.value)))
-        } else {
-            dispatch(setMinSettingsValueAC(Number(e.currentTarget.value)))
+            if (+e.currentTarget.value >= 0) {
+                dispatch(setMaxSettingsValueAC(Number(e.currentTarget.value)))
+            }
+        }else {
+            if (+e.currentTarget.value >= 0) {
+                dispatch(setMinSettingsValueAC(Number(e.currentTarget.value)))
+            }
         }
     }
 
