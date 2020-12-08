@@ -7,11 +7,12 @@ type ButtonPropsType = {
 
 }
 
-export function Button(props: ButtonPropsType) {
+export const Button = React.memo( (props: ButtonPropsType) => {
+    console.log("BUTTON")
     return (
         <div >
             <button className={props.disable ? "disable" : "button"} onClick={props.onClick}>{props.title}</button>
         </div>
     )
-}
+})
 

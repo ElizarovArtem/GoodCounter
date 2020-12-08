@@ -7,28 +7,23 @@ export enum ACTIONS_TYPES {
     VALUE_FROM_LOCAL_STORAGE = "VALUE_FROM_LOCAL_STORAGE"
 }
 
-type StateType = {
-    score: number
-    maxValue: number
-    minValue: number
-    maxSettingsValue: number
-    minSettingsValue: number
-}
-
-let initialState: StateType = {
+let initialState = {
     score: 0,
     maxValue: 0,
     minValue: 0,
     maxSettingsValue: 1,
     minSettingsValue: 0
 }
+
+export type StateType = typeof initialState
+
 type ActionsType =
-    | IncreaseScoreAC
-    | SetMinSettingsValueType
-    | SetMaxSettingsValueType
-    | EnterSettingsType
-    | ResetValueType
-    | ValueFromLocalStorageType
+    | ReturnType<typeof increaseScoreAC>
+    | ReturnType<typeof resetValueAC>
+    | ReturnType<typeof setMinSettingsValueAC>
+    | ReturnType<typeof setMaxSettingsValueAC>
+    | ReturnType<typeof enterSettingsAC>
+    | ReturnType<typeof valueFromLocalStorageAC>
 
 export const counterReducer = (state: StateType = initialState, action: ActionsType): StateType => {
     switch (action.type) {

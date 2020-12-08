@@ -8,10 +8,11 @@ import {MainDisplay} from "./MainDisplay";
 
 function AppWithRedux() {
 
-    let min = localStorage.getItem("MinValue")
-    let max = localStorage.getItem("MaxValue")
 
     useEffect(() => {
+        let min = localStorage.getItem("MinValue")
+        let max = localStorage.getItem("MaxValue")
+
         dispatch(valueFromLocalStorageAC(Number(min), Number(max)))
     }, [])
 

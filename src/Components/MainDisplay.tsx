@@ -3,19 +3,19 @@ import {selectRootState} from "../redux/store";
 import {increaseScoreAC, resetValueAC} from "../redux/counterReducer";
 import {Display} from "./Display";
 import {Button} from "./Button";
-import React from "react";
+import React, {useCallback} from "react";
 
-export function MainDisplay() {
+export const MainDisplay = React.memo( () => {
     let {score, maxValue, minValue, maxSettingsValue, minSettingsValue} = useSelector(selectRootState)
     const dispatch = useDispatch()
 
-    function richNumber() {
+    const richNumber = useCallback( () => {
         dispatch(increaseScoreAC(score + 1))
-    }
+    },[dispatch, score])
 
-    function resetNumber() {
+    const resetNumber = useCallback( () => {
         dispatch(resetValueAC(minValue))
-    }
+    }, [dispatch, score])
 
     return (
         <div className={"counter"}>
@@ -26,4 +26,4 @@ export function MainDisplay() {
             </div>
         </div>
     )
-}
+})

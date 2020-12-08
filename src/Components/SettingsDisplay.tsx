@@ -1,59 +1,57 @@
-import React, {ChangeEvent} from "react";
+import React, {ChangeEvent, useCallback} from "react";
 import {Button} from "./Button";
 import {useDispatch, useSelector} from "react-redux";
 import {enterSettingsAC, setMaxSettingsValueAC, setMinSettingsValueAC} from "../redux/counterReducer";
 import {selectRootState} from "../redux/store";
+import {SetSettingsInput} from "./SetSettingsInput";
 
-export function SettingsDisplay() {
+export const SettingsDisplay = React.memo( () => {
 
     let {maxSettingsValue, minSettingsValue} = useSelector(selectRootState)
     const dispatch = useDispatch()
 
-    function setValue() {
+    const setValue = useCallback( () => {
         dispatch(enterSettingsAC())
         localStorage.setItem("MinValue", String(minSettingsValue))
         localStorage.setItem("MaxValue", String(maxSettingsValue))
-    }
+    }, [dispatch])
 
-    const onChangeSettingsValue = (e: ChangeEvent<HTMLInputElement>) => {
+    const onChangeSettingsValue = useCallback( (e: ChangeEvent<HTMLInputElement>) => {
+        let valueFromInput = e.currentTarget.valueAsNumber
+
         if (e.currentTarget.dataset.value === "max") {
-            if (+e.currentTarget.value >= 0) {
-                dispatch(setMaxSettingsValueAC(Number(e.currentTarget.value)))
+            if (valueFromInput >= 0) {
+                dispatch(setMaxSettingsValueAC(Number(valueFromInput)))
             }
         }else {
-            if (+e.currentTarget.value >= 0) {
-                dispatch(setMinSettingsValueAC(Number(e.currentTarget.value)))
+            if (valueFromInput >= 0) {
+                dispatch(setMinSettingsValueAC(Number(valueFromInput)))
             }
         }
-    }
+    },[dispatch])
 
     return (
         <div className={"counter"}>
             <div className={"selectNumber"}>
-                <div>
-                    <label>MaxValue:
-                        <input
-                            className={maxSettingsValue <= minSettingsValue ? "errorInput" : "originInput"}
-                            value={maxSettingsValue}
-                            data-value={"max"}
-                            onChange={onChangeSettingsValue}
-                            type={"number"}/>
-                    </label>
-                </div>
-                <div>
-                    <label>MinValue:
-                        <input
-                            className={maxSettingsValue <= minSettingsValue ? "errorInput" : "originInput"}
-                            type={"number"}
-                            data-value={"min"}
-                            value={minSettingsValue}
-                            onChange={onChangeSettingsValue}/>
-                    </label>
-                </div>
+                <SetSettingsInput
+                    maxSettingsValue={maxSettingsValue}
+                    minSettingsValue={minSettingsValue}
+                    dataValue={"max"}
+                    value={maxSettingsValue}
+                    title={"MaxValue"}
+                    onChangeSettingsValue={onChangeSettingsValue}
+                />
+                <SetSettingsInput
+                    maxSettingsValue={maxSettingsValue}
+                    minSettingsValue={minSettingsValue}
+                    dataValue={"min"}
+                    value={minSettingsValue}
+                    title={"MinValue"}
+                    onChangeSettingsValue={onChangeSettingsValue}
+                />
             </div>
-            <div>
                 <Button onClick={setValue} title={"Set"} disable={maxSettingsValue <= minSettingsValue}/>
-            </div>
         </div>
     )
-}
+})
+

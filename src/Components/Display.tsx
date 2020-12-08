@@ -6,7 +6,7 @@ type DisplayPropsType = {
     error: boolean
 }
 
-export function Display(props: DisplayPropsType) {
+export const Display = React.memo( (props: DisplayPropsType) => {
     const count = props.maxValue === 0 ? <span className={"errorSpan"}>Set value</span> : props.count
 
     return (
@@ -16,7 +16,7 @@ export function Display(props: DisplayPropsType) {
             </div>
         </div>
     )
-}
+})
 
 
 
